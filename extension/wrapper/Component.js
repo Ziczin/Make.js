@@ -67,7 +67,14 @@ export default class Component extends Applicable {
         else this.element = document.createElement(this.elementType);
         
         for (const decorator of this.decorators) {
-            decorator.apply(this);
+            try {
+                decorator.apply(this);
+            }
+            catch (e) {
+                console.log(this)
+                console.log(e)
+                console.log(decorator)
+            }
         }
 
         for (const child of this.children) {

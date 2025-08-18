@@ -52,6 +52,16 @@ window.make = (function() {
         Card: (title, ...decorators) => new Card(title, ...decorators),
         CardContent: (...decorators) => new CardContent(...decorators),
 
-        Preferences: (...args) => new Preferences(...args)
+        Preferences: (...args) => new Preferences(...args),
+        'if': (condition, ...components) => condition ? components : [],
+        case: (condition, ...components) => ({ condition, components }),
+        switch: (...cases) => {
+            for (const c of cases) {
+                if (c.condition) {
+                    return c.components;
+                }
+            }
+            return [];
+        }
     };
 })();

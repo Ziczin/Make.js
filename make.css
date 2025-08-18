@@ -34,11 +34,14 @@
 }
 
 /* fix agent */
-p, form {
+p, form, h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
-/* Аккордеон */
+.make-notice-body {
+    padding: 8px;
+    border-radius: 12px;
+}
 /* Аккордеон */
 .make-accordion {
     display: flex;
@@ -143,13 +146,20 @@ p, form {
     padding: 3px 6px;
     font-size: .875rem;
 }
+.make-btn-redir {
+    text-align: left;
+    background-color: #ddd;
+    color: #222;
+    transition: background-color var(--transition-avg) ease;
+}
+
+.make-btn-redir:hover {
+    background-color: #bce;
+}
+
 
 .make-button {
     border-radius: 12px;
-}
-
-.make-block-separator {
-    margin-top: 8px;
 }
 
 /* tabs */
@@ -231,13 +241,13 @@ p, form {
     flex: 1;
     text-align: left;
 }
-.make-beauty-select {
+.make-delayed-margin-on-hover {
     filter: brightness(0.98);
     transition: margin-left var(--transition-very-very-slow) ease,
                 filter var(--transition-very-very-slow) ease;
 }
-.make-beauty-select:hover {
-    margin-left: 2px;
+.make-delayed-margin-on-hover:hover {
+    margin-left: 1%;
     filter: brightness(0.95);
     transition-duration: var(--transition-avg)
 }
@@ -256,6 +266,11 @@ p, form {
 
 .make-text-italic {
     font-style: italic;
+}
+
+.make-text-bold {
+    font-weight: bold;
+    letter-spacing: -0.025em;
 }
 
 /* colors */
@@ -287,7 +302,7 @@ p, form {
 }
 
 /* scrollbox */
-.scrollbox {
+.make-scrollbox {
     display: flex;
     flex-direction: column;
     max-height: 90vh;
@@ -295,14 +310,14 @@ p, form {
     margin-left: 10px;
     scrollbar-width: thin;
     scrollbar-color: #ccc transparent;}
-.scrollbox::-webkit-scrollbar {
+.make-scrollbox::-webkit-scrollbar {
     width: 12px;
     height: 12px;}
-.scrollbox::-webkit-scrollbar-thumb {
+.make-scrollbox::-webkit-scrollbar-thumb {
     background-color: #ccc;
     border-radius: 10px;
     border: 2px solid transparent;}
-.scrollbox::-webkit-scrollbar-track {
+.make-scrollbox::-webkit-scrollbar-track {
     background: transparent;}
 
 
@@ -347,3 +362,10 @@ p, form {
 .make-goose p {
     margin-top: -5px;
 }
+
+/* animatic */
+.make-margin-on-hover {
+    transition: margin-left 0.2s ease }
+.make-margin-on-hover:hover {
+    margin-left: 0.8%;
+    transition: margin-left 0.2s ease;}
