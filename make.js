@@ -27,7 +27,7 @@ const Accordion = content.prefab.accordion.Accordion(
 );
 
 window.make = (function() {
-    console.log('Powered by make.js v0.0.1.2dev')
+    console.log('Powered by make.js v0.0.1.4dev')
 
     return {
         other: other,
