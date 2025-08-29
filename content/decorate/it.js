@@ -14,6 +14,8 @@ export default (withCss) =>
         cardContent: withCss('make-card-content-additional'),
         littleDarker: withCss('make-little-darker'),
         littleLighter: withCss('make-little-lighter'),
+        centered: withCss('make-it-centered'),
+        textCentered: withCss('make-it-text-centered'),
 
         flex: withCss('make-flex'),
         flexRow: withCss('make-flex-row'),

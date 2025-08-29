@@ -282,12 +282,21 @@ p, form, h1, h2, h3, h4, h5, h6 {
     background-color: var(--v-gray);
 }
 
+.make-it-centered {
+    align-items: center;
+    justify-content: center;
+}
+
+.make-it-text-centered {
+    text-align: center;
+}
+
 .make-little-darker {
-    background-color: #0002;
+    background-color: #0001;
 }
 
 .make-little-lighter {
-    background-color: #fff2;
+    background-color: #fff1;
 }
 
 .make-color-red {

@@ -190,10 +190,6 @@ export default class Query {
 
         const response = await fetch(url, options);
         
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
         const data = await response.json();
 
         if (this._redirect_request_key && this._redirect_request_key in data) {

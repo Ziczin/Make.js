@@ -25,5 +25,11 @@ export default function(createComponent, makeWith) {
         Image: (src, ...d) => typeof src === 'string'
             ? createComponent('img', makeWith.attr({src: src}), ...d)
             : createComponent('img', ...d),
+        Label: (txt, ...d) => typeof txt === 'string'
+            ? createComponent('label', makeWith.text(txt), ...d)
+            : createComponent('label', ...d),
+        Option: (txt, value, ...d) => typeof txt === 'string'
+            ? createComponent('option', makeWith.text(txt), makeWith.attr({value: value}), ...d)
+            : createComponent('option', ...d),
     }
 }
