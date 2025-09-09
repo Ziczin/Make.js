@@ -13,6 +13,10 @@ const createEvent = factory.Event(extension.wrapper.Decorator);
 const makeWith = content.decorate.with(createDecorator);
 const makeOn = content.decorate.on(createEvent);
 
+const Collector = content.prefab.Collector(
+    extension.wrapper.Component,
+)
+
 const Tabs = content.prefab.Tabs(
     extension.wrapper.Component,
     createComponent,
@@ -33,36 +37,33 @@ window.make = (function() {
     console.log(meta.changelog)
 
     return {
+        //logic:
         other: other,
+        ...other.conditions,
+
+        //decorators:
         with: makeWith,
         on: makeOn,
         it: content.decorate.it(makeWith.css),
         size: content.decorate.size(makeWith.css),
         color: content.decorate.color(makeWith.css),
         style: content.decorate.style(makeWith.style),
-        Notice: noticeCollection.createNotice,
-        UniqueNotice: noticeCollection.createUniqueNotice,
+
+        //prefabs:
         ...content.prefab.basic(createComponent),
         ...content.prefab.custom(
             createComponent, makeWith,
             content.decorate.inner(makeWith.css),
         ),
+
+        //Advanced prefabs:
         Tabs: (...tabs) => new Tabs(...tabs),
-
-        Accordion: (...cards) => new Accordion(...cards),
         Card: (...decorators) => new Card(...decorators),
-
+        Accordion: (...cards) => new Accordion(...cards),
+        UniqueNotice: noticeCollection.createUniqueNotice,
         Preferences: (...args) => new Preferences(...args),
-        'if': (condition, ...components) => condition ? components : [],
-        case: (condition, ...components) => ({ condition, components }),
-        switch: (...cases) => {
-            for (const c of cases) {
-                if (c.condition) {
-                    return c.components;
-                }
-            }
-            return [];
-        },
-        Query: (...params) => new extension.wrapper.Query(...params)
+        Notice: noticeCollection.createNotice,
+        Query: (...params) => new extension.wrapper.Query(...params),
+        Collector: (...params) => new Collector(...params),
     };
 })();

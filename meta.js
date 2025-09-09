@@ -1,8 +1,14 @@
 export default {
-    version: `v0.0.6-dev`,
+    version: `v0.1.0-dev`,
     greeting: `Powered by make.js`,
     changelog: `
 CHANGE LOG
+v0.1.0
+- Added Collector component, which collects data from input fields, selects and textareas by calling the collect() method
+- Added TextArea component that wraps <textarea> tag
+- Added Preform component that wraps <pre> tag
+- Some file structure changes
+
 v0.0.6
 - Rework Notice: separate animation to open, idle and close states
 - Added other.closeCurrentNotice() function, which finds closest Notice and closes it
