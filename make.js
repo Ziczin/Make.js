@@ -32,11 +32,12 @@ const Accordion = content.prefab.accordion.Accordion(
 const noticeCollection = content.prefab.Notice(core, extension.wrapper.Component)
 other.closeCurrentNotice = noticeCollection.noticeHandler.closeActive.bind(noticeCollection.noticeHandler);
 window.make = (function() {
-    console.log(meta.greeting)
+    console.log(meta.greetings)
     console.log(meta.version)
-    console.log(meta.changelog)
+    console.log(meta.subgreetings)
 
     return {
+        
         //logic:
         other: other,
         ...other.conditions,
@@ -65,5 +66,6 @@ window.make = (function() {
         Notice: noticeCollection.createNotice,
         Query: (...params) => new extension.wrapper.Query(...params),
         Collector: (...params) => new Collector(...params),
+        meta: meta,
     };
 })();
