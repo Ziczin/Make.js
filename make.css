@@ -73,7 +73,6 @@ p, form, h1, h2, h3, h4, h5, h6 {
     font-size: 20px;
     background-color: white;
     border-radius: 12px;
-    box-shadow: 0 0 20px #0002;
     transition: background-color 0.3s cubic-bezier(0, 0, 0.01, 1),
                 color 0.3s ease,
                 box-shadow 0.1s ease,
@@ -214,6 +213,7 @@ p, form, h1, h2, h3, h4, h5, h6 {
 
 /* tabs */
 .make-tabs {
+    height: 100%;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -221,9 +221,12 @@ p, form, h1, h2, h3, h4, h5, h6 {
 }
 .make-tabs-menu {
     display: flex;
+    flex: 0 0 auto;
+    max-height: fit-content;
     flex-direction: row;
     background-color: #0001;
 }
+
 .make-tabs-menu-scroll {
     overflow-x: scroll;
 }
@@ -243,32 +246,33 @@ p, form, h1, h2, h3, h4, h5, h6 {
                 background-color var(--transition-very-slow) ease;
     background-color: #00000020;
 }
-
 .make-tab-button.make-mark-active-tab {
     outline: 2px solid #0006;
 }
-
 .make-tab-button:hover {
     filter: brightness(0.2);
     background-color: #00000027;
     transition: filter var(--transition-avg) ease,
                 background-color var(--transition-avg) ease;
 }
-
 .make-tab-button.active {
     border-color: #000;
 }
 .make-tabs-content {
-    padding: 15px;
-    height: auto;
+    flex: 999999 1 auto;
+    padding-top: 16px;
+    box-sizing: border-box;
+    overflow-y: hidden;
 }
 
 .make-tab-content {
   display: flex;
+  flex: 0 1;
   opacity: 1;
   transform: translateY(0);
   height: auto;
-  overflow: hidden;
+  overflow-y: hidden;
+  height: 100%;
   transition: opacity 0.5s ease, transform 0.5s ease, height 0.5s ease;
 }
 
@@ -352,16 +356,16 @@ p, form, h1, h2, h3, h4, h5, h6 {
     color: var(--error);
 }
 
-.make-l-gray {
+.make-color-l-gray {
     background-color: var(--l-gray);
 }
-.make-m-gray {
+.make-color-m-gray {
     background-color: var(--m-gray);
 }
-.make-d-gray {
+.make-color-d-gray {
     background-color: var(--d-gray);
 }
-.make-v-gray {
+.make-color-v-gray {
     background-color: var(--v-gray);
 }
 
@@ -448,6 +452,9 @@ p, form, h1, h2, h3, h4, h5, h6 {
     scrollbar-width: thin;
     scrollbar-color: #ccc transparent;
 }
+.make-scrollbox > * {
+    flex: 0 0 auto;
+}
 .make-scrollbox::-webkit-scrollbar {
     width: 12px;
     height: 12px;
@@ -512,5 +519,5 @@ p, form, h1, h2, h3, h4, h5, h6 {
 .make-margin-on-hover {
     transition: margin-left 0.2s ease }
 .make-margin-on-hover:hover {
-    margin-left: 0.8%;
+    margin-left: 0.6%;
     transition: margin-left 0.2s ease;}
