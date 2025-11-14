@@ -91,11 +91,12 @@ export default class Query {
     with(elem) { this.body.add(elem); return this; }
     where(elem) { this.query.add(elem); return this; }
 
-    async get() { return await this.fetch('GET') }
-    async post() { return await this.fetch('POST') }
-    async patch() { return await this.fetch('PATCH') }
-    async delete() { return await this.fetch('DELETE') }
-    async put() { return await this.fetch('PUT') }
+
+    get() { return this.fetch('GET') }
+    post() { return this.fetch('POST') }
+    patch() { return this.fetch('PATCH') }
+    delete() { return this.fetch('DELETE') }
+    put() { return this.fetch('PUT') }
 
     async fetch(method=null) {
         const route = this.route.build();
@@ -120,19 +121,51 @@ export default class Query {
         this.flush()
 
         let data;
-        try {
-            const text = await response.text();
+        const text = await response.text();
+        const parsed = (() => {
             try {
-                data = text ? JSON.parse(text) : {};
+                return text ? JSON.parse(text) : {};
             } catch (err) {
-                data = text;
+                return null;
             }
-        }
-        catch (error) {
-            console.error('Make-Query error:', error);
-            data = null;
-        }
+        })();
+        data = parsed === null ? text : parsed;
 
         return data;
     }
+
+    repeat(delay, method, func) {
+        let intervalId = null;
+
+        const schedule = (d) => {
+            if (intervalId !== null) clearInterval(intervalId);
+            intervalId = setInterval(async () => {
+                const res = await this.view().fetch(method);
+                if (res.stop) {
+                    clearInterval(intervalId);
+                    intervalId = null;
+                    return;
+                }
+                if (res.response) {
+                    func(res.response);
+                    return;
+                }
+                if (res.delay && typeof res.delay === 'number' && res.delay > 0) {
+                    schedule(res.delay);
+                }
+            }, d);
+        };
+
+        schedule(delay);
+
+        return () => {
+            if (intervalId !== null) {
+                clearInterval(intervalId);
+                intervalId = null;
+            }
+        };
+    }
+
+
+
 }
